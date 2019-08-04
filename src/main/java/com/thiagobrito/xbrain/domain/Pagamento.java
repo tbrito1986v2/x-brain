@@ -11,10 +11,12 @@ import javax.persistence.MapsId;
 import javax.persistence.OneToOne;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.thiagobrito.xbrain.domain.enums.EstadoPagamento;
 
 @Entity
 @Inheritance(strategy=InheritanceType.JOINED) //Mapeamento Herança
+@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "@type") //Terá um campo adicional chamado Tipo
 public abstract class Pagamento implements Serializable {
 	private static final long serialVersionUID = 1L;
 
