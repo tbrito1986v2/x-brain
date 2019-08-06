@@ -32,7 +32,7 @@ public class PedidoService {
 	@Autowired
 	private ProdutoService produtoService;
 
-	public Pedido find(Integer id) {
+	public Pedido find(String id) {
 		Optional<Pedido> obj = repo.findById(id);
 		return obj.orElse(null);
 	}

@@ -14,7 +14,7 @@ public class ClienteService {
 	@Autowired
 	private ClienteRepository repo;
 
-	public Cliente find(Integer id) {
+	public Cliente find(String id) {
 		Optional<Cliente> obj = repo.findById(id);
 		return obj.orElse(null);
 	}

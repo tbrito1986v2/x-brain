@@ -14,15 +14,18 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 @Entity
+@JsonIdentityInfo(generator = ObjectIdGenerators.IntSequenceGenerator.class, property = "@id", scope = Cliente.class)
 public class Cliente implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private Integer id;
+	private String id;
 	private String nome;
 	private String email;
 	private String cpfOuCnpj;
@@ -42,7 +45,7 @@ public class Cliente implements Serializable {
 	public Cliente() {
 	}
 
-	public Cliente(Integer id, String nome, String email, String cpfOuCnpj) {
+	public Cliente(String id, String nome, String email, String cpfOuCnpj) {
 		super();
 		this.id = id;
 		this.nome = nome;
@@ -50,11 +53,11 @@ public class Cliente implements Serializable {
 		this.cpfOuCnpj = cpfOuCnpj;
 	}
 
-	public Integer getId() {
+	public String getId() {
 		return id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 
@@ -130,7 +133,11 @@ public class Cliente implements Serializable {
 			return false;
 		return true;
 	}
-
+	
+	@Override
+	public String toString() {
+		return "Cliente [id =" + id + ", nome=" + nome + ", email = " +email+ ", cpfOuCnpj = " +cpfOuCnpj+ "]";
+	}
 
 
 }
